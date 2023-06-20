@@ -10,19 +10,6 @@ public class heapSort {
         print(array);
 
     }
-    public static void print(int[] array) {
-        for (int j : array) {
-            System.out.print(j);
-        }
-        System.out.println();
-    }
-    public static int[] randomFill(int size) {
-        int[] array = new int[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = new Random().nextInt(10);
-        }
-        return array;
-    }
     public static void heapSort(int[] arr)
     {
         int n = arr.length;
@@ -69,5 +56,19 @@ public class heapSort {
             // Рекурсивно преобразуем в двоичную кучу затронутое поддерево
             heapify(arr, n, largest);
         }
+    }
+
+    public static void print(int[] array) {
+        for (int j : array) {
+            System.out.print(j);
+        }
+        System.out.println();
+    }
+    public static int[] randomFill(int size) {
+        int[] array = new int[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = new Random().nextInt(10);
+        }
+        return array;
     }
 }
