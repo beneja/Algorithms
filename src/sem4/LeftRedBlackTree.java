@@ -15,34 +15,25 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
         }
     }
     public void add(T value) {
-        root = addNode(root, value);  // Добавляем новый узел, начиная от корня
-        root.color = Color.Black;     // Корень всегда черный
+        root = addNode(root, value);
+        root.color = Color.Black;
     }
     private Node addNode(Node node, T value) {
-        // Если узел пустой, то создаем новый узел
         if (node == null) {
             return new Node(value);
         }
-
-        // Добавляем новый узел в левое поддерево
         if (value.compareTo(node.value) < 0) {
             node.left = addNode(node.left, value);
-
         }
-        // Добавляем новый узел в правое поддерево
         else if (value.compareTo(node.value) > 0) {
             node.right = addNode(node.right, value);
-
         }
-
         if (isRed(node.right) && !isRed(node.left)) {
             node = leftSwap(node);
         }
-        // 2
         if (isRed(node.left) && isRed(node.left.left)) {
             node = rightSwap(node);
         }
-        // 3
         if (isRed(node.left) && isRed(node.right)) {
             flipColors(node);
         }
@@ -55,7 +46,6 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
         return node.color == Color.Red;
     }
     private Node leftSwap(Node node) {
-
         Node x = node.right;
         node.right = x.left;
         x.left = node;
@@ -72,10 +62,7 @@ public class LeftRedBlackTree<T extends Comparable<T>> {
         node.color = Color.Red;
         return x;
     }
-
-    // Метод для выполнения смены цвета
     private void flipColors(Node node) {
-
         node.color = Color.Red;
         node.left.color = Color.Black;
         node.right.color = Color.Black;
